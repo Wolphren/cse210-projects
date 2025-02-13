@@ -24,7 +24,7 @@ public class Reference
         this._endVerse = endVerse;
     }
 
-    public string ToString()
+    public string ConvertToString()
     {
         if(_startVerse == null)
         {

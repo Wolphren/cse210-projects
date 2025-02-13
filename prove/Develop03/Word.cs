@@ -16,7 +16,7 @@ public class Word
     {
         return _isHidden;
     }
-    public string ToString()
+    public string ConvertToString()
     {
         if (_isHidden == true)
         {

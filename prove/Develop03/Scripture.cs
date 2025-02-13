@@ -66,13 +66,13 @@ public class Scripture
     public void Display()
     {
         Console.Clear();
-        Console.WriteLine(_reference.ToString());
+        Console.WriteLine(_reference.ConvertToString());
         
         List<string> wordStrings = new List<string>();
 
         foreach (Word word in _words)
         {
-            wordStrings.Add(word.ToString());
+            wordStrings.Add(word.ConvertToString());
         }
 
         Console.WriteLine(string.Join(' ', wordStrings));
