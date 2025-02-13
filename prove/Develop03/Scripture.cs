@@ -2,7 +2,7 @@ public class Scripture
 {
     private List<Word> _words;
     private Reference _reference;
-    private Random random;
+    private Random _random;
 
     public Scripture( Reference reference, string text)
     {
@@ -10,7 +10,7 @@ public class Scripture
         _words = text.Split(' ')
             .Select(word => new Word(word))
             .ToList();
-            random = new Random();
+            _random = new Random();
     }
 
     public void HideWords()
@@ -18,7 +18,7 @@ public class Scripture
     int visibleCount = 0;
     foreach (Word word in _words)
     {
-        if (!word.isHidden())
+        if (!word.IsHidden())
         {
             visibleCount++;
         }
@@ -42,31 +42,39 @@ public class Scripture
     int hiddenCount = 0;
     while (hiddenCount < wordsToHide)
     {
-        int index = random.Next(_words.Count); 
+        int _index = _random.Next(_words.Count); 
         
-        if (!_words[index].isHidden())
+        if (!_words[_index].IsHidden())
         {
-            _words[index].hide();
+            _words[_index].Hide();
             hiddenCount++;
         }
     }
 }
 
-    public bool isCompletelyHidden()
+    public bool IsCompletelyHidden()
     {
         foreach (Word word in _words)
         {
-            if (!word.isHidden())
+            if (!word.IsHidden())
             {
                 return false;
             }
         }
         return true;
     }
-    public void display()
+    public void Display()
     {
         Console.Clear();
-        Console.WriteLine(_reference.toString());
-        Console.WriteLine(string.Join(' ', _words));
+        Console.WriteLine(_reference.ToString());
+        
+        List<string> wordStrings = new List<string>();
+
+        foreach (Word word in _words)
+        {
+            wordStrings.Add(word.ToString());
+        }
+
+        Console.WriteLine(string.Join(' ', wordStrings));
     }
 }

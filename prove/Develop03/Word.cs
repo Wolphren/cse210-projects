@@ -8,15 +8,15 @@ public class Word
         this._text = text;
         this._isHidden = false;
     }
-    public void hide()
+    public void Hide()
     {
         _isHidden = true;  
     }
-    public bool isHidden()
+    public bool IsHidden()
     {
         return _isHidden;
     }
-    public string toString()
+    public string ToString()
     {
         if (_isHidden == true)
         {

@@ -5,17 +5,17 @@ public class Reference
     private string _startVerse;
     private string _endVerse;
 
-public Reference(string book, int chapter)
-{
-    this._book = book;
-    this._chapter = chapter;
-}
-public Reference(string book, int chapter, string startVerse)
-{
-    this._book = book;
-    this._chapter = chapter;
-    this._startVerse = startVerse;
-}
+    // public Reference(string book, int chapter)
+    // {
+    //     this._book = book;
+    //     this._chapter = chapter;
+    // }
+    // public Reference(string book, int chapter, string startVerse)
+    // {
+    //     this._book = book;
+    //     this._chapter = chapter;
+    //     this._startVerse = startVerse;
+    // }
     public Reference(string book, int chapter, string startVerse, string endVerse)
     {
         this._book = book;   
@@ -24,7 +24,7 @@ public Reference(string book, int chapter, string startVerse)
         this._endVerse = endVerse;
     }
 
-    public string toString()
+    public string ToString()
     {
         if(_startVerse == null)
         {
