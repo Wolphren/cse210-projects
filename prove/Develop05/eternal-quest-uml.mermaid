@@ -1,0 +1,61 @@
+classDiagram
+    class Goal {
+        -string _name
+        -string _description
+        -int _points
+        +Goal(string name, string description, int points)
+        +virtual int RecordEvent()
+        +virtual bool IsComplete()
+        +virtual string GetStringRepresentation()
+        +string GetName()
+        +string GetDescription()
+        +int GetPoints()
+    }
+
+    class SimpleGoal {
+        -bool _isComplete
+        +SimpleGoal(string name, string description, int points)
+        +override int RecordEvent()
+        +override bool IsComplete()
+        +override string GetStringRepresentation()
+    }
+
+    class EternalGoal {
+        +EternalGoal(string name, string description, int points)
+        +override int RecordEvent()
+        +override bool IsComplete()
+        +override string GetStringRepresentation()
+    }
+
+    class ChecklistGoal {
+        -int _targetCount
+        -int _currentCount
+        -int _bonusPoints
+        +ChecklistGoal(string name, string description, int points, int targetCount, int bonusPoints)
+        +override int RecordEvent()
+        +override bool IsComplete()
+        +override string GetStringRepresentation()
+    }
+
+    class GoalTracker {
+        -List~Goal~ _goals
+        -int _totalScore
+        +void AddGoal(Goal goal)
+        +void RecordGoalEvent(int goalIndex)
+        +void DisplayGoals()
+        +int GetTotalScore()
+        +void SaveGoals(string filename)
+        +void LoadGoals(string filename)
+    }
+
+    class Program {
+        +static void Main(string[] args)
+        +static void DisplayMenu()
+        +static Goal CreateGoal()
+    }
+
+    Goal <|-- SimpleGoal : Inheritance
+    Goal <|-- EternalGoal : Inheritance
+    Goal <|-- ChecklistGoal : Inheritance
+    GoalTracker "1" *-- "*" Goal : Composition
+    Program "1" -- "1" GoalTracker : Uses
