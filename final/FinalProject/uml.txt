@@ -1,0 +1,60 @@
+@startuml
+
+abstract class Character {
+  - name: String
+  - health: int
+  - attack_power: int
+  + attack(target: Character)
+  + take_damage(amount: int)
+}
+
+class Player {
+  - level: int
+  - inventory: Inventory
+  + use_item(item: Item)
+  + gain_experience(exp: int)
+}
+
+class Enemy {
+  - enemy_type: String
+  - loot: Item
+  + drop_loot(): Item
+}
+
+abstract class Item {
+  - name: String
+  + use()
+}
+
+class Weapon {
+  - damage: int
+  - attack_speed: float
+}
+
+class Armor {
+  - defense: int
+  - durability: int
+}
+
+class Inventory {
+  - items: List<Item>
+  + add_item(item: Item)
+  + remove_item(item: Item)
+}
+
+class Game {
+  + start()
+  + run_turn()
+  + end()
+}
+
+Character <|-- Player
+Character <|-- Enemy
+Item <|-- Weapon
+Item <|-- Armor
+
+Player --> Inventory : has
+Enemy --> Item : drops
+Inventory --> Item : contains
+
+@enduml
