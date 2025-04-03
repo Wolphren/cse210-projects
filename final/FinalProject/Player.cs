@@ -17,7 +17,6 @@ public class Player : Character
         _equippedArmor = null;
     }
     
-    // Add getter for level
     public int GetLevel()
     {
         return _level;
