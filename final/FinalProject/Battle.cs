@@ -91,6 +91,10 @@ public class Battle
                 {
                     Item selectedItem = _player.GetInventory().GetItemAt(itemChoice - 1);
                     _player.UseItem(selectedItem);
+                    if (selectedItem is Potion)
+                    {
+                        _player.GetInventory().RemoveItem(selectedItem);
+                    }
                 }
                 else
                 {

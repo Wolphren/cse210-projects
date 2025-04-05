@@ -12,9 +12,11 @@ public class Game
 
         Weapon startingWeapon = new Weapon("Rusty Sword", 5, 1.0f);
         Armor startingArmor = new Armor("Leather Vest", 3, 50);
+        Potion healthPotion = new Potion("Health Potion", 30);
         
         _player.GetInventory().AddItem(startingWeapon);
         _player.GetInventory().AddItem(startingArmor);
+        _player.GetInventory().AddItem(healthPotion);
         
         _player.UseItem(startingWeapon);
         _player.UseItem(startingArmor);
@@ -98,6 +100,10 @@ public class Game
                         if (selectedItem != null)
                         {
                             _player.UseItem(selectedItem);
+                            if (selectedItem is Potion)
+                            {
+                                _player.GetInventory().RemoveItem(selectedItem);
+                            }
                         }
                     }
                     else
@@ -202,7 +208,7 @@ public class Game
                 0.8f + (random.Next(6) * 0.1f)
             );
         }
-        else
+        else if (itemType < 80)
         {
             string[] armorNames = { "Helmet", "Chestplate", "Gauntlets", "Boots", "Shield" };
             string prefix = GetRandomPrefix();
@@ -212,6 +218,19 @@ public class Game
                 random.Next(2, 8),
                 random.Next(40, 101) 
             );
+        }
+        else
+        {
+            string[] potionTypes = { "Minor", "Regular", "Greater" };
+            int healAmount = potionTypes[random.Next(potionTypes.Length)] switch
+            {
+                "Minor" => 20,
+                "Regular" => 40,
+                "Greater" => 80,
+                _ => 30
+            };
+            
+            return new Potion($"{potionTypes[random.Next(potionTypes.Length)]} Health Potion", healAmount);
         }
     }
     

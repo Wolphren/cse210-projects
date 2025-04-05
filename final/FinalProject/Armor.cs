@@ -45,4 +45,15 @@ public class Armor : Item
             Console.WriteLine($"{_name} is damaged and provides reduced protection!");
         }
     }
+    
+    public void Repair(int amount)
+    {
+        int repairAmount = Math.Min(amount, _maxDurability - _durability);
+        _durability += repairAmount;
+        if (_durability > 0 && _defense < _maxDurability / 2)
+        {
+            _defense = _maxDurability / 2;
+        }  
+        Console.WriteLine($"{_name} repaired for {repairAmount} durability!");
+    }
 }
